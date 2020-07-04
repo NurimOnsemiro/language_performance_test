@@ -4,10 +4,8 @@ function fibonacci(value){
   }
   return fibonacci(value - 1) + fibonacci(value - 2);
 }
-
 let result;
 let fibValue = 38;
-
 for(let i=0;i<5;i++){
   console.time('alice');
   result = fibonacci(fibValue);

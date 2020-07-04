@@ -10,7 +10,6 @@ int fibonacci(const int value) {
 void main() {
 	HourMeter hm;
 	int fibValue{ 38 };
-
 	for(int i=0;i<5;i++){
 		printf("fibValue: %d\n", fibValue);
 		hm.startMeasure();

@@ -5,7 +5,6 @@ class Main {
     }
     return fibonacci(value - 1) + fibonacci(value - 2);
   }
-
   public static void main(String[] args) {
     long fibValue = 38;
     System.out.println("fibValue: " + fibValue);
