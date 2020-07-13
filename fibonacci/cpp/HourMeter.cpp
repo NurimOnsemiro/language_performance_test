@@ -33,7 +33,8 @@ void HourMeter::endMeasure()
 	result_sec = end - begin;
 	isMeasuring = false;
 
-	printf("수행시간: %lf\n", result_sec);
+	std::cout << "elapsed time:" << result_sec.count() << std::endl;
+	//printf("elapsed time: %lf\n", result_sec);
 }
 
 double HourMeter::getLatestDuration()
