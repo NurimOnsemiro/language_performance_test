@@ -10,11 +10,10 @@ func fibonacci(value int) int {
 }
 func main() {
 	fibValue := 45
-	for i:=0;i<5;i++ {
-		startTime := time.Now()
-		result := fibonacci(fibValue)
-		elapsedTime := time.Since(startTime)
-		d2 := elapsedTime / time.Millisecond
-		println("time: ", d2, ", result: ", result)
-	}
+	
+	startTime := time.Now()
+	result := fibonacci(fibValue)
+	elapsedTime := time.Since(startTime)
+	d2 := elapsedTime / time.Millisecond
+	println("time: ", d2, ", result: ", result)
 }
