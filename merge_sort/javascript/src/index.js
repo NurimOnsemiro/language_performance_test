@@ -28,41 +28,43 @@ function mergeSort(arr, low, high){
     mergeSort(arr, low, mid);
     mergeSort(arr, mid + 1, high);
 
-    let p = low, a = low, b = mid + 1;
-    let tmp = Number.MAX_VALUE;
-    while(p <= high){
-        let aSwap = false;
-        let bSwap = false;
-        if(tmp > arr[b]){
-            let tp = tmp;
-            tmp = arr[b];
-            arr[b] = tp;
-            bSwap = true;
+    let a = low, b = mid + 1;
+    let pos = low;
+    while(true){
+        if(arr[a] < arr[b]){
+            brr[pos++] = arr[a++];
+        } else if(arr[a] > arr[b]){
+            brr[pos++] = arr[b++];
+        } else {
+            //INFO: 같음
+            brr[pos++] = arr[a++];
+            brr[pos++] = arr[b++];
         }
-        //INFO: tmp가 arr[b]보다 항상 작다
-        if(a <= mid && arr[a] > tmp){
-            let tp = tmp;
-            tmp = arr[a];
-            arr[a] = tp;
-            aSwap = true;
-        } else if (p !== a){
-            let tp = tmp;
-            tmp = arr[a];
-            arr[a] = tp;
-        }
-        //INFO: arr[a]가 tmp보다 항상 작다
-        p++;
-        if(aSwap === true) a++;
-        if(aSwap !== true && bSwap === true){
-            b++;
-        }
+        if(a > mid) break;
+        else if(b > high) break;
+    }
+    while(a <= mid){
+        brr[pos++] = arr[a++];
+    }
+    while(b <= high){
+        brr[pos++] = arr[b++];
+    }
+    for(let i=low;i<=high;i++){
+        arr[i] = brr[i];
     }
 }
 
+let brr = null;
 function main(){
-    let numData = 10000;
+    let numData = 100000;
+    console.log('Start Merge Sort; data size : ' + numData);
+    brr = new Array(numData).fill(0);
     for(let i=0;i<1;i++){
         let arr = generateRandomArray(numData);
+        console.time('mergesort');
+        mergeSort(arr, 0, numData - 1);
+        console.timeEnd('mergesort');
+        //console.log(arr);
     }
 }
 main();
