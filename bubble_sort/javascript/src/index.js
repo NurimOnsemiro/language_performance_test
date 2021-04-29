@@ -24,14 +24,14 @@ function bubbleSort(arr){
 }
 
 function main(){
-    for(let i=0;i<1;i++){
+    for(let i=0;i<5;i++){
         let numData = 100000;
-        console.time('bubblesort');
+        
         //console.time('generate');
         let arr = generateRandomArray(numData);
         //console.timeEnd('generate');
 
-        
+        console.time('bubblesort');
         bubbleSort(arr);
         console.timeEnd('bubblesort');
     }
