@@ -59,12 +59,12 @@ function main(){
     let numData = 100000;
     console.log('Start Merge Sort; data size : ' + numData);
     brr = new Array(numData).fill(0);
-    for(let i=0;i<1;i++){
+    for(let i=0;i<5;i++){
         let arr = generateRandomArray(numData);
         console.time('mergesort');
         mergeSort(arr, 0, numData - 1);
         console.timeEnd('mergesort');
-        //console.log(arr);
+        console.log(arr[0], arr[numData - 1]);
     }
 }
 main();

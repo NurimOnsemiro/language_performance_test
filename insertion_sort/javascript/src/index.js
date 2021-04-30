@@ -8,29 +8,28 @@ function generateRandomArray(numData){
     return arr;
 }
 
-/** INFO: 버블정렬 */
-function bubbleSort(arr){
-    let firstLength = arr.length - 1;
-    //INFO: 배열 전체 개수만큼 반복
+function insertionSort(arr){
+    let firstLength = arr.length;
     for(let i=0;i<firstLength;i++){
-        let secondLength = firstLength - i;
-        for(let j=0;j<secondLength;j++){
-            if(arr[j] <= arr[j+1]) continue;
+        let target = arr[i];
+        for(let j=firstLength - 1;j>i;j--){
+            if(target <= arr[j]) continue;
             let tmp = arr[j];
-            arr[j] = arr[j+1];
-            arr[j+1] = tmp;
+            arr[j] = target;
+            target = tmp;
         }
+        arr[i] = target;
     }
 }
 
 function main(){
     let numData = 100000;
-    console.log('Start Bubble Sort; data size : ' + numData);
+    console.log('Start Insertion Sort; data size : ' + numData);
     for(let i=0;i<3;i++){
         let arr = generateRandomArray(numData);
-        console.time('bubblesort');
-        bubbleSort(arr);
-        console.timeEnd('bubblesort');
+        console.time('sort');
+        insertionSort(arr);
+        console.timeEnd('sort');
         console.log(arr[0], arr[numData - 1]);
     }
 }
