@@ -3,14 +3,14 @@
 function generateRandomArray(numData){
     let arr = new Array(numData).fill(0);
     for(let i=0;i<numData;i++){
-        arr[i] = Math.round(Math.random() * 100000000);
+        arr[i] = Math.round(Math.random() * numData);
     }
     return arr;
 }
 
-function quickSort(arr){
+function quickSort(arr, start, end){
     let stack = [];
-    let low = 0, high = arr.length - 1;
+    let low = start, high = end;
     let pivot, tmp;
     let i, j;
     stack.push(high);
@@ -73,14 +73,14 @@ function quickSort(arr){
 }
 
 function main(){
-    let numData = 20000000;
+    let numData = 16000000;
     let dataSizeGap = 5000000;
     for(let j=0;j<1;j++){
         console.log('Start Quick Sort; data size : ' + numData);
         for(let i=0;i<1;i++){
             let arr = generateRandomArray(numData);
             console.time('quick_sort');
-            quickSort(arr);
+            quickSort(arr, 0, numData - 1);
             console.timeEnd('quick_sort');
     
             arr = generateRandomArray(numData);
