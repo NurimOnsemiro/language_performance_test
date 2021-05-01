@@ -1,7 +1,14 @@
+const USE_FIX_ARR = true;
 
 /** INFO: 파라미터 만큼 배열을 생성하고 랜덤값 입력 */
 function generateRandomArray(numData){
-    let arr = new Array(numData).fill(0);
+    let arr;
+    if(USE_FIX_ARR){
+        let arrBuffer = new ArrayBuffer(4 * numData);
+        arr = new Int32Array(arrBuffer);
+    } else {
+        arr = new Array(numData).fill(0);
+    }
     for(let i=0;i<numData;i++){
         arr[i] = Math.round(Math.random() * numData);
     }
@@ -26,11 +33,9 @@ function quickSort(arr, start, end){
 
         if(curLength > 2) {
             //INFO: 2개 이상인 경우
-            let tmpMid = Math.round((low+high) / 2);
+            let tmpMid = Math.round((low+high) >> 1);
             //INFO: low, mid, high 중 중간값을 정해야 함
-            let tmpArr = [low, tmpMid, high];
-            tmpArr.sort((a,b) => {return arr[a]-arr[b]});
-            pivot = tmpArr[1];
+            pivot = arr[low] > arr[high] ? (arr[low] > arr[tmpMid] ? (arr[tmpMid] > arr[high] ? tmpMid : high) : low) : (arr[high] > arr[tmpMid] ? (arr[tmpMid] > arr[low] ? tmpMid : low) : high);
 
             {//SWAP
                 tmp = arr[high];
@@ -65,6 +70,7 @@ function quickSort(arr, start, end){
         tmp = arr[i];
         arr[i] = arr[high];
         arr[high] = tmp;
+
         stack.push(high);
         stack.push(i+1);
         stack.push(i-1);
@@ -73,20 +79,19 @@ function quickSort(arr, start, end){
 }
 
 function main(){
-    let numData = 16000000;
+    let numData = 100000000;
     let dataSizeGap = 5000000;
+
     for(let j=0;j<1;j++){
-        console.log('Start Quick Sort; data size : ' + numData);
-        for(let i=0;i<1;i++){
+        for(let i=0;i<3;i++){
+            console.time('mem');
             let arr = generateRandomArray(numData);
+            console.timeEnd('mem');
+            console.log('Start Quick Sort; data size : ' + numData);
             console.time('quick_sort');
             quickSort(arr, 0, numData - 1);
             console.timeEnd('quick_sort');
-    
-            arr = generateRandomArray(numData);
-            console.time('basic_sort');
-            arr.sort((a,b) => {return a-b});
-            console.timeEnd('basic_sort');
+            //console.log(arr);
         }
         numData += dataSizeGap;
     }
