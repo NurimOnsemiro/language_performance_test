@@ -43,23 +43,18 @@ function mergeSort(arr, low, high){
         if(a > mid) break;
         else if(b > high) break;
     }
-    while(a <= mid){
-        brr[pos++] = arr[a++];
-    }
-    while(b <= high){
-        brr[pos++] = arr[b++];
-    }
-    for(let i=low;i<=high;i++){
-        arr[i] = brr[i];
-    }
+    while(a <= mid) brr[pos++] = arr[a++];
+    while(b <= high) brr[pos++] = arr[b++];
+    
+    for(let i=low;i<=high;i++) arr[i] = brr[i];
 }
 
 let brr = null;
 function main(){
-    let numData = 100000;
+    let numData = 25000000;
     console.log('Start Merge Sort; data size : ' + numData);
     brr = new Array(numData).fill(0);
-    for(let i=0;i<5;i++){
+    for(let i=0;i<3;i++){
         let arr = generateRandomArray(numData);
         console.time('mergesort');
         mergeSort(arr, 0, numData - 1);
