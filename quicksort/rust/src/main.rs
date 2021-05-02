@@ -148,21 +148,29 @@ unsafe fn quick_sort(arr: &mut [u32], start: u32, end: u32) {
 }
 
 fn main() {
+    println!("a0");
     unsafe {
         init_stack();
     }
+    println!("a1");
     let now = SystemTime::now();
     let mut rng = rand::thread_rng();
 
     let mut arr: [u32; NUM_DATA] = [0; NUM_DATA];
 
+    println!("a2");
+
     for i in 1..NUM_DATA {
         arr[i] = rng.gen();
     }
 
+    println!("a3");
+
     unsafe {
         quick_sort(&mut arr, 0, NUM_DATA as u32 - 1);
     }
+
+    println!("a4");
 
     //println!("first:{}, last: {}", arr[0], arr[NUM_DATA - 1]);
 
