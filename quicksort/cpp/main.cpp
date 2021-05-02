@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define N 100000000
+#define N 20000000
 #define R 100000
 #define STKSIZE N
 

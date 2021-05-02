@@ -2,7 +2,7 @@ import java.util.Stack;
 
 class Main {
     public static int[] generateRandomArray(int numData) {
-        int[] arr = new int[numData];
+        int[] arr = new int[numData + 1];
         for (int i = 0; i < numData; i++) {
             arr[i] = (int) Math.round(Math.random() * (double) numData);
         }
@@ -10,7 +10,7 @@ class Main {
     }
 
     public static void quickSort(int[] arr, int start, int end) {
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<Integer>();
         int low = start, high = end;
         int pivot, tmp;
         int i, j;
@@ -71,7 +71,7 @@ class Main {
     }
 
     public static void main(String[] args) {
-        int numData = 20000000;
+        int numData = 100000000;
         System.out.println("Start Sorting");
         for (int i = 0; i < 1; i++) {
             long beforeTime = System.currentTimeMillis();

@@ -79,7 +79,7 @@ function quickSort(arr, start, end){
 }
 
 function main(){
-    let numData = 100000000;
+    let numData = 20000000;
     let dataSizeGap = 5000000;
 
     for(let j=0;j<1;j++){
