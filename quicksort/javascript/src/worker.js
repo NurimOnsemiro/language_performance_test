@@ -1,19 +1,4 @@
-const USE_FIX_ARR = true;
-
-/** INFO: 파라미터 만큼 배열을 생성하고 랜덤값 입력 */
-function generateRandomArray(numData){
-    let arr;
-    if(USE_FIX_ARR){
-        let arrBuffer = new ArrayBuffer(4 * numData);
-        arr = new Int32Array(arrBuffer);
-    } else {
-        arr = new Array(numData).fill(0);
-    }
-    for(let i=0;i<numData;i++){
-        arr[i] = Math.round(Math.random() * numData);
-    }
-    return arr;
-}
+import {threadId, parentPort} from 'worker_threads';
 
 function quickSort(arr, start, end){
     let stack = [];
@@ -78,22 +63,15 @@ function quickSort(arr, start, end){
     }
 }
 
-function main(){
-    let numData = 100000000;
-    let dataSizeGap = 5000000;
+let tmp = parentPort.on('message', data => {
+    let sab = data.sab;
+    let startPos = data.startPos;
+    let endPos = data.endPos;
 
-    for(let j=0;j<1;j++){
-        for(let i=0;i<1;i++){
-            console.time('mem');
-            let arr = generateRandomArray(numData);
-            console.timeEnd('mem');
-            console.log('Start Quick Sort; data size : ' + numData);
-            console.time('quick_sort');
-            quickSort(arr, 0, numData - 1);
-            console.timeEnd('quick_sort');
-            //console.log(arr);
-        }
-        numData += dataSizeGap;
-    }
-}
-main();
+    let arr = new Int32Array(sab);
+
+    quickSort(arr, startPos, endPos);
+
+    parentPort.postMessage(threadId);
+});
+
