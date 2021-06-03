@@ -10,8 +10,6 @@ import (
 	"time"
 )
 
-var tempArr []int
-
 type Stack struct {
 	items []int
 }
@@ -144,7 +142,6 @@ func main() {
 
 	//INFO: 값이 저장되는 배열
 	arr := make([]int, jobSize)
-	tempArr = make([]int, jobSize)
 
 	for i := 0; i < jobSize; i++ {
 		arr[i] = rand.Intn(maxValue)
