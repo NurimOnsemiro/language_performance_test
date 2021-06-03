@@ -1,7 +1,7 @@
 import {Worker} from 'worker_threads';
 import path from 'path';
 
-const N = 20000000;
+const N = 320000000;
 const RANGE = 1000000000;
 const NUM_THREADS = 16;
 

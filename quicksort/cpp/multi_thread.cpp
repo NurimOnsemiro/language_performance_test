@@ -9,10 +9,10 @@
 
 using namespace std;
 
-#define N 20000000
+#define N 320000000
 #define RANGE 1000000000
 #define NUM_THREADS 16
-#define REPEAT 5
+#define REPEAT 1
 
 void quickSort(int arr[N], const int& start, const int& end) {
     int pivot, tmp;

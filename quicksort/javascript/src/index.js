@@ -1,4 +1,5 @@
 const USE_FIX_ARR = true;
+const MAX_VALUE = 100000000;
 
 /** INFO: 파라미터 만큼 배열을 생성하고 랜덤값 입력 */
 function generateRandomArray(numData){
@@ -10,7 +11,7 @@ function generateRandomArray(numData){
         arr = new Array(numData).fill(0);
     }
     for(let i=0;i<numData;i++){
-        arr[i] = Math.round(Math.random() * numData);
+        arr[i] = Math.round(Math.random() * MAX_VALUE);
     }
     return arr;
 }
@@ -95,5 +96,6 @@ function main(){
         }
         numData += dataSizeGap;
     }
+    process.exit(0);
 }
 main();
